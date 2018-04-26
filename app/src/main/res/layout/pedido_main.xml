@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="MI PEDIDO"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textColor="#0b0b0b"
+            android:textSize="25sp" />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titulo_cafe"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:paddingRight="6dp"
+                android:text="Cafe Tradicional  "
+                android:textColor="#0e0e0e"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/titulo_cappu"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:paddingRight="40dp"
+                android:text="Cappuchino   "
+                android:textColor="#0e0e0e"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/titulo_latte"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:paddingRight="94dp"
+                android:text="Latte   "
+                android:textColor="#0e0e0e"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/titulo_desayuno"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:paddingRight="36dp"
+                android:text="Desayuno      "
+                android:textColor="#0e0e0e"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/titulo_pasta"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:paddingRight="48dp"
+                android:text="Pasta del día"
+                android:textColor="#0e0e0e"
+                android:textSize="20sp" />
+
+
+                <TextView
+                android:id="@+id/resultado0"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/cafe_menos"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:onClick="pedirMenoscafe"
+                android:padding="8dp"
+                android:text="-"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/capu_menos"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:onClick="pedirMenosCappuchino"
+                android:padding="8dp"
+                android:text="-"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/latte_menos"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:onClick="pedirMenoslatte"
+                android:padding="8dp"
+                android:text="-"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/panino_menos"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:onClick="pedirMenospanino"
+                android:padding="8dp"
+                android:text="-"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/pasta_menos"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:onClick="pedirMenospasta"
+                android:padding="8dp"
+                android:text="-"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/resultado1"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/resultado_cafe"
+                android:layout_width="45dp"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#101860"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/resultado_Cappuchino"
+                android:layout_width="45dp"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#101860"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/resultado_latte"
+                android:layout_width="45dp"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#101860"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/resultado_panino"
+                android:layout_width="45dp"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#101860"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/resultado_pasta"
+                android:layout_width="45dp"
+                android:layout_height="46dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#101860"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/resultado2"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/cafe_mas"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:onClick="pedirMascafe"
+                android:text="+"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/capu_mas"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:onClick="pedirMasCappuchino"
+                android:text="+"
+                android:textSize="20sp"/>
+            <Button
+                android:id="@+id/latte_mas"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:onClick="pedirMaslatte"
+                android:text="+"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/panino_mas"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:onClick="pedirMaspanino"
+                android:text="+"
+                android:textSize="20sp" />
+             <Button
+                android:id="@+id/pasta_mas"
+                android:layout_width="48dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:onClick="pedirMaspasta"
+                android:text="+"
+                android:textSize="20sp" />
+
+
+
+            <TextView
+                android:id="@+id/resultado3"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:text="" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/pago_tarjeta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pago en tarjeta" />
+
+            <RadioButton
+                android:id="@+id/pago_efectivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pago en Efectivo" />
+
+            <EditText
+                android:id="@+id/cambio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="cantidad"
+                android:inputType="textCapWords"
+                />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/button_recoger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recoger" />
+
+                <EditText
+                    android:id="@+id/tiempo"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="00 min"
+                    android:inputType="time" />
+
+                <RadioButton
+                    android:id="@+id/button_oficina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="15dp"
+                    android:text="Oficina" />
+
+                <EditText
+                    android:id="@+id/oficina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="No. Oficina"
+                    android:inputType="textCapWords" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/nombrecliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/ingreseComentario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="COMENTARIOS"
+            android:inputType="textCapWords" />
+
+        <Button
+            android:id="@+id/Ordenar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                android:onClick="desplegarTotal"
+            android:text="Continuar" />
+
+    </LinearLayout>
+
+
+</ScrollView>

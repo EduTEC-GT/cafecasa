@@ -1,0 +1,12 @@
+
+<resources>
+
+    <string name="app_name">Cafe Casa </string>
+    <string name="category_Ensalada">Ensaladas</string>
+    <string name="category_panino">Paninos</string>
+    <string name="category_numbers">Bebidas Calientes</string>
+    <string name="category_Desayuno">Desayunos</string>
+    <string name="category_pasta">Pastas</string>
+    <string name="category_postre">Postres</string>
+
+</resources>

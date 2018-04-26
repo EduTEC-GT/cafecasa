@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <color name="primary_color">#b4b2b2</color>
+    <color name="primary_dark_color">#FFFFFF</color>
+    <color name="tan_background">#FFFFFF</color>
+    <color name="category_numbers">#3e2723</color>
+    <color name="category_family">#deab3e</color>
+    <color name="category_colors">#3bafe1</color>
+    <color name="category_phrases">#4bd75b</color>
+    <color name="category_postres">#b13931</color>
+    <color name="category_pastas">#c2b859</color>
+    <color name="category_paninos">#ed833c</color>
+
+</resources>
