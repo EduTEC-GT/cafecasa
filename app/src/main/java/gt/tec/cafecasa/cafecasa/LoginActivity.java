@@ -3,8 +3,8 @@ package gt.tec.cafecasa.cafecasa;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,6 +14,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import gt.tec.cafecasa.cafecasa.main.ui.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -35,17 +36,23 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (mauth.getCurrentUser() != null){
-
+            welcome();
         }else{
             login();
         }
+    }
+
+    private void welcome() {
+        startActivity(new Intent(this, MainActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     private void login() {
         AuthUI.SignInIntentBuilder intentBuilder = AuthUI.getInstance().createSignInIntentBuilder()
                 .setAvailableProviders(getProviders())
                 .setLogo(R.mipmap.ic_launcher)
-                .setIsSmartLockEnabled(false);
+                .setIsSmartLockEnabled(!BuildConfig.DEBUG);
         Intent intent = intentBuilder.build();
         startActivityForResult(intent, RC_SIGN_IN);
     }
@@ -61,9 +68,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                Log.e("SIGN_IN_OK", String.valueOf(mauth.getCurrentUser().getUid()));
+                welcome();
             }else{
-                Log.e("SIGN_IN_FAIL", String.valueOf(data.getDataString()));
+                Toast.makeText(this, getString(R.string.login_error), Toast.LENGTH_LONG).show();
             }
         }
     }

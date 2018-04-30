@@ -55,7 +55,9 @@ dependencies {
     //Facebook
     implementation "com.facebook.android:facebook-login:$rootProject.ext.facebookVersion"
     //Twitter
-    implementation("com.twitter.sdk.android:twitter:$rootProject.ext.twitterVersion") { transitive = true }
+    implementation("com.twitter.sdk.android:twitter:$rootProject.ext.twitterVersion") {
+        transitive = true
+    }
     //Inyeccion de dependencias
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
     implementation "javax.annotation:jsr250-api:$rootProject.ext.jsr250Version"
