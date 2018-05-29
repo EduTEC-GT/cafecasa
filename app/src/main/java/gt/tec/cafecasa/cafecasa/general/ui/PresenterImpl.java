@@ -41,18 +41,21 @@ public class PresenterImpl implements Presenter {
     @Override
     public void onEvent(Event event) {
         view.loading(false);
-        if (event.getError() != null && !event.getError().isEmpty()){
+        if (event.getError() != null && !event.getError().isEmpty()) {
             view.showError(event.getError());
-        }else{
-            if (event.getMensaje() != null && !event.getMensaje().isEmpty()){
+        } else {
+            if (event.getMensaje() != null && !event.getMensaje().isEmpty()) {
                 view.showMessage(event.getMensaje());
             }
-            switch (event.getTipo()){
+            switch (event.getTipo()) {
                 case Event.getUsuario:
                     view.loadUser((FirebaseUser) event.getObject());
                     break;
                 case Event.forcedLogout:
                     view.forcedLogout();
+                    break;
+                case Event.totalCarrito:
+                    view.totalCarrito((Double) event.getObject());
                     break;
                 default:
                     moreOnEvent(event);
@@ -62,5 +65,11 @@ public class PresenterImpl implements Presenter {
 
     @Override
     public void moreOnEvent(Event event) {
+    }
+
+    @Override
+    public void totalCarrito() {
+        view.loading(true);
+        interactor.totalCarrito();
     }
 }

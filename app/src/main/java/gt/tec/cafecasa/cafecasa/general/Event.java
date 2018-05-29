@@ -7,6 +7,8 @@ public class Event implements Serializable {
     public final static int getUsuario = 0;
     public final static int getOpciones = 1;
     public final static int forcedLogout = 2;
+    public final static int getMenu = 3;
+    public final static int totalCarrito = 4;
 
     private int tipo;
     private String error;

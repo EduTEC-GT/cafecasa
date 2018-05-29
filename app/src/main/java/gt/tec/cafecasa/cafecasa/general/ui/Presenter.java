@@ -8,4 +8,5 @@ public interface Presenter {
     void getUsuario();
     void onEvent(Event event);
     void moreOnEvent(Event event);
+    void totalCarrito();
 }

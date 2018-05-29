@@ -1,6 +1,7 @@
 package gt.tec.cafecasa.cafecasa.main.DI;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +61,8 @@ public class MainModule {
 
     @Singleton
     @Provides
-    MainRepo providesMainRepo(EventBus bus, Context context, FirebaseHelper helper){
-        return new MainRepoImpl(bus, context, helper);
+    MainRepo providesMainRepo(EventBus bus, Context context, FirebaseHelper helper, SharedPreferences preferences){
+        return new MainRepoImpl(bus, context, helper,preferences);
     }
 
     @Singleton

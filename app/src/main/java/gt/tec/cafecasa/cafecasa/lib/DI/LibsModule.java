@@ -5,6 +5,8 @@ import android.content.Context;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
+import java.text.DecimalFormat;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -44,5 +46,11 @@ public class LibsModule {
     @Provides
     RequestManager providesRequestManager(Context context){
         return Glide.with(context);
+    }
+
+    @Singleton
+    @Provides
+    DecimalFormat providesDecimalFormat(){
+        return new DecimalFormat("#,##0.00");
     }
 }

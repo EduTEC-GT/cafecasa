@@ -20,4 +20,9 @@ public class InteractorImpl implements Interactor {
     public void getUsuario() {
         repo.getUsuario();
     }
+
+    @Override
+    public void totalCarrito() {
+        repo.totalCarrito();
+    }
 }

@@ -9,6 +9,11 @@ import gt.tec.cafecasa.cafecasa.main.DI.MainComponent;
 import gt.tec.cafecasa.cafecasa.main.DI.MainModule;
 import gt.tec.cafecasa.cafecasa.main.ui.MainView;
 import gt.tec.cafecasa.cafecasa.main.ui.adapters.OpcionesListener;
+import gt.tec.cafecasa.cafecasa.menu.DI.DaggerMenuComponent;
+import gt.tec.cafecasa.cafecasa.menu.DI.MenuComponent;
+import gt.tec.cafecasa.cafecasa.menu.DI.MenuModule;
+import gt.tec.cafecasa.cafecasa.menu.ui.MenuView;
+import gt.tec.cafecasa.cafecasa.menu.ui.adapters.MenuClickListener;
 
 /**
  * Created by javie on 11/28/2017.
@@ -48,6 +53,15 @@ public class App extends Application {
                 .libsModule(libsModule)
                 .firebaseModule(firebaseModule)
                 .mainModule(new MainModule(view, listener))
+                .build();
+    }
+
+    public MenuComponent menu(MenuView view, MenuClickListener listener){
+        return DaggerMenuComponent.builder()
+                .appModule(appModule)
+                .libsModule(libsModule)
+                .firebaseModule(firebaseModule)
+                .menuModule(new MenuModule(view, listener))
                 .build();
     }
     //Inyection - FIN

@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import gt.tec.cafecasa.cafecasa.entitys.Menu;
 import gt.tec.cafecasa.cafecasa.entitys.Opciones;
 import gt.tec.cafecasa.cafecasa.lib.base.EventBus;
 
@@ -54,5 +55,25 @@ public class FirebaseHelper {
         }else{
             result.error("");
         }
+    }
+
+    public void getMenu(String key, final FirebaseResut result) {
+        reference.child("menu").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Menu> menus = new ArrayList<Menu>();
+                for (DataSnapshot data : dataSnapshot.getChildren()){
+                    Menu menu = data.getValue(Menu.class);
+                    menu.setKey(data.getKey());
+                    menus.add(menu);
+                }
+                result.found(menus);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                result.error(databaseError.toException().getLocalizedMessage());
+            }
+        });
     }
 }

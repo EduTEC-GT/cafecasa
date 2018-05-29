@@ -11,13 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import butterknife.BindString;
 import butterknife.BindView;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import gt.tec.cafecasa.cafecasa.LoginActivity;
 import gt.tec.cafecasa.cafecasa.R;
@@ -35,6 +38,8 @@ public class DrawableActivity extends AppCompatActivity
     DrawerLayout drawer;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+    @BindView(R.id.go_cart)
+    Button goCart;
     @BindView(R.id.loader)
     public ProgressBar loader;
     private ImageLoader imgLoader;
@@ -110,6 +115,7 @@ public class DrawableActivity extends AppCompatActivity
         nombre.setText(user.getDisplayName());
         email.setText(user.getEmail());
         this.imgLoader.load(avatar, user.getPhotoUrl().toString());
+        gPresenter.totalCarrito();
     }
 
     @Override
@@ -118,5 +124,19 @@ public class DrawableActivity extends AppCompatActivity
                 Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|
                         Intent.FLAG_ACTIVITY_NEW_TASK
         ));
+    }
+
+    @Override
+    public void totalCarrito(double total) {
+        if (total > 0){
+            goCart.setVisibility(android.view.View.VISIBLE);
+        }else{
+            goCart.setVisibility(android.view.View.GONE);
+        }
+    }
+
+    @OnClick(R.id.go_cart)
+    public void goCart(){
+        //TODO: startActivity(new Intent(this, CartActivity.class));
     }
 }

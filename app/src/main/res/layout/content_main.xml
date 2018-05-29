@@ -8,6 +8,7 @@
     android:background="@android:color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".main.ui.MainActivity"
+    android:layout_above="@+id/go_cart"
     tools:showIn="@layout/app_bar_main">
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
