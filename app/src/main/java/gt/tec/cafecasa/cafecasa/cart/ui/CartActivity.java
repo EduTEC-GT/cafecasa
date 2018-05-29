@@ -1,6 +1,7 @@
-package gt.tec.cafecasa.cafecasa.menu.ui;
+package gt.tec.cafecasa.cafecasa.cart.ui;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,54 +17,54 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import gt.tec.cafecasa.cafecasa.App;
 import gt.tec.cafecasa.cafecasa.R;
+import gt.tec.cafecasa.cafecasa.cart.ui.adapters.CarritoAdapter;
+import gt.tec.cafecasa.cafecasa.cart.ui.adapters.CartClickListener;
+import gt.tec.cafecasa.cafecasa.entitys.Carrito;
 import gt.tec.cafecasa.cafecasa.entitys.Menu;
 import gt.tec.cafecasa.cafecasa.entitys.Opciones;
 import gt.tec.cafecasa.cafecasa.general.DrawableActivity;
 import gt.tec.cafecasa.cafecasa.lib.base.ImageLoader;
-import gt.tec.cafecasa.cafecasa.main.ui.MainPresenter;
+import gt.tec.cafecasa.cafecasa.main.ui.MainActivity;
+import gt.tec.cafecasa.cafecasa.menu.ui.MenuPresenter;
 import gt.tec.cafecasa.cafecasa.menu.ui.adapters.MenuAdapter;
-import gt.tec.cafecasa.cafecasa.menu.ui.adapters.MenuClickListener;
 import gt.tec.cafecasa.cafecasa.util.ObjectSerializer;
 
-public class MenuActivity extends DrawableActivity implements MenuView, MenuClickListener {
+public class CartActivity extends DrawableActivity implements CartView, CartClickListener {
 
-    @BindView(R.id.menu_recycler)
-    RecyclerView recycler;
-    @BindView(R.id.menu_header_img)
-    ImageView header;
-    @BindView(R.id.menu_opt_nombre)
-    TextView nombre;
-    @BindView(R.id.content_menu)
+    @BindView(R.id.content_cart)
     RelativeLayout content;
+    @BindView(R.id.recycler_cart)
+    RecyclerView recycler;
+    @BindView(R.id.total_mount)
+    TextView total;
 
     @BindString(R.string.cantidad_invalida)
     String cantidadInvalida;
 
     @Inject
-    MenuPresenter presenter;
+    CartPresenter presenter;
     @Inject
     ImageLoader imageLoader;
     @Inject
-    MenuAdapter adapter;
-    @Inject
     DecimalFormat decimalFormat;
+    @Inject
+    CarritoAdapter adapter;
 
     private App app;
     private Opciones opt;
     private AlertDialog dialog;
-    public static final String opcion = "OPCION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,16 +75,9 @@ public class MenuActivity extends DrawableActivity implements MenuView, MenuClic
         presenter.onCreate();
         setMenu(imageLoader, presenter);
         content.setVisibility(View.VISIBLE);
-        try {
-            opt = (Opciones) ObjectSerializer.deserialize(getIntent().getStringExtra(opcion));
-            imageLoader.load(header, opt.getImagen());
-            nombre.setText(opt.getNombre());
-            presenter.getMenu(opt.getKey());
-        } catch (Exception e) {
-            Log.e("Menu", e.getLocalizedMessage());
-        }
-        recycler.setLayoutManager(new GridLayoutManager(this, 2));
+        recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(adapter);
+        presenter.getCarrito();
     }
 
     @Override
@@ -94,16 +88,33 @@ public class MenuActivity extends DrawableActivity implements MenuView, MenuClic
 
     private void inject() {
         app = (App) getApplication();
-        app.menu(this, this).inject(this);
+        app.cart(this, this).inject(this);
     }
 
     @Override
-    public void getMenu(List<Menu> menu) {
-        adapter.setMenus(menu);
+    public void totalCarrito(double total) {
+        if (total == 0){
+            startActivity(new Intent(this, MainActivity.class).addFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    |Intent.FLAG_ACTIVITY_CLEAR_TASK
+            ));
+        }
+        this.total.setText(decimalFormat.format(total));
     }
 
     @Override
-    public void menuClick(final Menu menu) {
+    public void getCarrito(ArrayList<Carrito> carritos) {
+        adapter.setCarritos(carritos);
+    }
+
+    @OnClick(R.id.paybtn)
+    public void pay(){
+
+    }
+
+    @Override
+    public void cartClick(Carrito carrito) {
+        final Menu menu = carrito.getMenu();
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final View view = LayoutInflater.from(this).inflate(R.layout.add_cart_dialog, null);
         CircleImageView image = view.findViewById(R.id.imagen_dialog);
@@ -117,6 +128,7 @@ public class MenuActivity extends DrawableActivity implements MenuView, MenuClic
         imageLoader.load(image, menu.getImagen());
         nombre.setText(menu.getNombre());
         precio.setText(decimalFormat.format(menu.getPrecio()));
+        monto.setText(carrito.getCantidad());
         monto.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -161,7 +173,7 @@ public class MenuActivity extends DrawableActivity implements MenuView, MenuClic
             @Override
             public void onClick(View v) {
                 if (monto.getText().toString() != null && !monto.getText().toString().isEmpty()) {
-                    presenter.agregarCart(menu, Integer.parseInt(monto.getText().toString()));
+                    presenter.updateCart(menu, Integer.parseInt(monto.getText().toString()));
                 }
                 dialog.cancel();
             }

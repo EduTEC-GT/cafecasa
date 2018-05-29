@@ -30,6 +30,9 @@
         <include layout="@layout/content_menu"
             android:id="@+id/content_menu"
             android:visibility="gone"/>
+        <include layout="@layout/content_cart"
+            android:id="@+id/content_cart"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/go_cart"

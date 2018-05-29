@@ -24,6 +24,7 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import gt.tec.cafecasa.cafecasa.LoginActivity;
 import gt.tec.cafecasa.cafecasa.R;
+import gt.tec.cafecasa.cafecasa.cart.ui.CartActivity;
 import gt.tec.cafecasa.cafecasa.general.ui.Presenter;
 import gt.tec.cafecasa.cafecasa.general.ui.PresenterImpl;
 import gt.tec.cafecasa.cafecasa.general.ui.View;
@@ -137,6 +138,6 @@ public class DrawableActivity extends AppCompatActivity
 
     @OnClick(R.id.go_cart)
     public void goCart(){
-        //TODO: startActivity(new Intent(this, CartActivity.class));
+        startActivity(new Intent(this, CartActivity.class));
     }
 }

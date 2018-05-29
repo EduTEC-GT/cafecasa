@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp" android:id="@+id/item_cart"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+<de.hdodenhof.circleimageview.CircleImageView
+    android:layout_width="80dp"
+    android:src="@mipmap/ic_launcher"
+    android:id="@+id/imagen_cart"
+    android:layout_marginRight="8dp"
+    android:layout_height="80dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imagen_cart"
+        android:layout_alignTop="@id/imagen_cart"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black"
+        android:text="@string/app_name"
+        android:layout_toLeftOf="@id/precio_cart"
+        android:id="@+id/nombre_cart"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/app_name"
+        android:layout_below="@id/nombre_cart"
+        android:id="@+id/precio_cantidad"
+        android:layout_toLeftOf="@id/precio_cart"
+        android:layout_toRightOf="@id/imagen_cart"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/precio_cart"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/black"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_toLeftOf="@id/edit_cart"
+        android:text="0" />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/edit_cart"
+        android:layout_marginLeft="8dp"
+        android:src="@drawable/baseline_edit_black_48"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

@@ -14,4 +14,9 @@
     <string name="ok_btn">Agregar</string>
     <string name="cantidad_invalida">Debes elegir una cantidad de una hacia arriba</string>
     <string name="go_cart">Ir al carrito</string>
+    <string name="cart_title">Carrito</string>
+    <string name="total">Total: Q</string>
+    <string name="pagar">Ordenar</string>
+    <string name="a_nombre">A nombre de:</string>
+    <string name="oficina">Número de oficina</string>
 </resources>

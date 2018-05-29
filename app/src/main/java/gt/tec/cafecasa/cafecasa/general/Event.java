@@ -9,6 +9,7 @@ public class Event implements Serializable {
     public final static int forcedLogout = 2;
     public final static int getMenu = 3;
     public final static int totalCarrito = 4;
+    public final static int getCarrito = 5;
 
     private int tipo;
     private String error;

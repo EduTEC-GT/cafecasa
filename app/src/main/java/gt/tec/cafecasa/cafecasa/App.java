@@ -2,6 +2,11 @@ package gt.tec.cafecasa.cafecasa;
 
 import android.app.Application;
 
+import gt.tec.cafecasa.cafecasa.cart.DI.CartComponent;
+import gt.tec.cafecasa.cafecasa.cart.DI.CartModule;
+import gt.tec.cafecasa.cafecasa.cart.DI.DaggerCartComponent;
+import gt.tec.cafecasa.cafecasa.cart.ui.CartView;
+import gt.tec.cafecasa.cafecasa.cart.ui.adapters.CartClickListener;
 import gt.tec.cafecasa.cafecasa.firebase.DI.FirebaseModule;
 import gt.tec.cafecasa.cafecasa.lib.DI.LibsModule;
 import gt.tec.cafecasa.cafecasa.main.DI.DaggerMainComponent;
@@ -62,6 +67,15 @@ public class App extends Application {
                 .libsModule(libsModule)
                 .firebaseModule(firebaseModule)
                 .menuModule(new MenuModule(view, listener))
+                .build();
+    }
+
+    public CartComponent cart(CartView view, CartClickListener listener){
+        return DaggerCartComponent.builder()
+                .appModule(appModule)
+                .libsModule(libsModule)
+                .firebaseModule(firebaseModule)
+                .cartModule(new CartModule(view, listener))
                 .build();
     }
     //Inyection - FIN
